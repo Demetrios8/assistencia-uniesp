@@ -9,6 +9,8 @@ import br.edu.uniesp.assistencia.internal.cliente.mapper.ClienteMapper;
 import br.edu.uniesp.assistencia.internal.cliente.repository.ClienteRepository;
 import br.edu.uniesp.assistencia.shared.exception.RecursoNaoEncontradoException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,7 +34,7 @@ public class ClienteService {
     }
 
     @Transactional(readOnly = true)
-    public org.springframework.data.domain.Page<ClienteResumoResponse> listarTodos(org.springframework.data.domain.Pageable pageable) {
+    public Page<ClienteResumoResponse> listarTodos(Pageable pageable) {
         return clienteRepository.findAll(pageable)
                 .map(ClienteMapper::paraResumoResposta);
     }

@@ -42,4 +42,11 @@ public class EquipamentoEntity {
     public void associarCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
+
+    public void alterarDados(String tipo, String marca, String modelo, String numeroSerie) {
+        this.tipo = tipo;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.numeroSerie = numeroSerie;
+    }
 }

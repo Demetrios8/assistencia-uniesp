@@ -7,6 +7,8 @@ import br.edu.uniesp.assistencia.internal.cliente.dto.CriarClienteResponse;
 import br.edu.uniesp.assistencia.internal.cliente.service.ClienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +34,8 @@ public class ClienteController {
     }
 
     @GetMapping
-    public ResponseEntity<org.springframework.data.domain.Page<ClienteResumoResponse>> listarTodos(
-            @org.springframework.data.web.PageableDefault(size = 10) org.springframework.data.domain.Pageable pageable) {
+    public ResponseEntity<Page<ClienteResumoResponse>> listarTodos(
+            @org.springframework.data.web.PageableDefault(size = 10) Pageable pageable) {
         org.springframework.data.domain.Page<ClienteResumoResponse> page = clienteService.listarTodos(pageable);
         return ResponseEntity.ok(page);
     }
