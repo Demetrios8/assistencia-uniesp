@@ -48,6 +48,10 @@ public class ClienteEntity {
         this.nome = nome;
     }
 
+    public void alterarEmail(String email) {
+        this.email = email;
+    }
+
     public void ativar() {
         this.ativo = true;
     }
