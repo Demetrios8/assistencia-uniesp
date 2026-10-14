@@ -19,9 +19,4 @@ public class OrdemServicoController {
 
     private final OrdemServicoService ordemServicoService;
 
-    @PostMapping("{/id}")
-    public ResponseEntity<CriarOrdemServicoResponse> abrir(@Valid @RequestBody CriarOrdemServicoRequest request) {
-        CriarOrdemServicoResponse response = ordemServicoService.abrirOrdemServico(request);
-        return ResponseEntity.created(location).body(response);
-    }
 }
