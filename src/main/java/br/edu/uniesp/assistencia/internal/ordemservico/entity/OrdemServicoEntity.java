@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -74,6 +75,13 @@ public class OrdemServicoEntity {
     public OrdemServicoEntity(String numeroProtocolo, ClienteEntity cliente, EquipamentoEntity equipamento, String descricaoProblema) {
         if (!cliente.isAtivo()) {
             throw new RegraNegocioException("Não é permitido abrir Ordem de Serviço para um cliente inativo.");
+        }
+        ClienteEntity proprietarioEquipamento = equipamento.getCliente();
+        if (proprietarioEquipamento == null
+                || (proprietarioEquipamento != cliente
+                && (proprietarioEquipamento.getId() == null
+                || !Objects.equals(proprietarioEquipamento.getId(), cliente.getId())))) {
+            throw new RegraNegocioException("O equipamento informado não pertence ao cliente indicado.");
         }
         this.numeroProtocolo = numeroProtocolo;
         this.cliente = cliente;

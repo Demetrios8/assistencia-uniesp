@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrdemServicoRepository extends JpaRepository<OrdemServicoEntity, Long> {
+    boolean existsByNumeroProtocolo(String numeroProtocolo);
 }
